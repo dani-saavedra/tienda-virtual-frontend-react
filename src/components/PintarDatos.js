@@ -1,3 +1,4 @@
+import DetalleProducto from "./DetalleProducto";
 import PintarHolaMundo from "./PintarHolaMundo";
 
 //JAVA lenguaje fuertemente tipado
@@ -6,7 +7,8 @@ const producto = {
   referencia: "10-A",
   nombre: "escobas",
   valor: 10000,
-  cantidad: 99
+  cantidad: 99,
+  marca:"Cualquier cosa"
 }
 
 const { referencia } = producto;
@@ -16,6 +18,7 @@ const PintarDatos = () => {
   return (
     <>{}
       <PintarHolaMundo nombreProducto={producto.nombre} otroParametro="Cualquiercosa" parametroQueEsUnNumero={2} />
+      <DetalleProducto nombre={producto.nombre} marca={producto.marca} cantidad={producto.cantidad}/>
       <table className="table">
         <thead>
           <tr>
