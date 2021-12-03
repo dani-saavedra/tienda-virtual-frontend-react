@@ -1,11 +1,13 @@
 import consultarProductos from "../api/Proyecto.api";
 
-import { useState } from 'react'
+import { useState, useEffect } from 'react'
+import FilaProducto from "./FilaProducto";
 
 
 //resolve cuando responde ok
 //error  se desmadra todo
 const ListarProductos = () => {
+    //NO USAR ESTO JAMAS
     /*const datos = consultarProductos()
         .then((response) => {
             console.log(response)
@@ -24,29 +26,47 @@ const ListarProductos = () => {
         .catch((error) => {
             console.log("Mori")
         })*/
-    const [productos, setProductos] = useState("")
+    //hooks
+    const [productos, setProductos] = useState([])
 
+    //Nota: un mal use de useState para setear una variable te puede generar un side effect.
 
-    const pintarProductos = () => {
+    //hooks
+
+    //llamando con boton, (para gustos los colores)
+    const cargarProductos = () => {
         consultarProductos()
-            .then((response) => {
-                return response.map(({ referencia, marca, cantidad, precio, disponibilidad }) => {
-                    return <tr>
-                        <td>{referencia}</td>
-                        <td>{marca}</td>
-                        <td>{cantidad}</td>
-                        <td>{precio}</td>
-                        <td>{disponibilidad}</td>
-                    </tr>
-                });
-            })
+            .then((response) => setProductos(response))
             .catch((error) => {
                 console.log("Mori")
             })
     }
+    /*
+    Voy a ejecutar algo (callback) al momento que pase el tiempo que tenga definido
+    setTimeout(() => {
+        consultarProductos()
+            .then((response) => setProductos(response))
+            .catch((error) => {
+                console.log("Mori")
+            })
+    }, 2000) // 2 segundos
+    */
+
+    useEffect(() => {
+        consultarProductos()
+            .then((response) => setProductos(response))
+            .catch((error) => {
+                console.log("Mori")
+            })
+    }, [])
+    //}, [EL ELEMENTO QUE ESTE ACA Y CAMBIE DISPARA EL USEEFFECT])
 
 
-    return <table className="table">
+
+    //map: Iterar, transforma en algo
+    return <div>
+        <button className="btn btn-primary" onClick={cargarProductos}>Cargue los elementos </button>
+        <table className="table">
         <thead>
             <tr>
                 <th>Referencia</th>
@@ -57,9 +77,12 @@ const ListarProductos = () => {
             </tr>
         </thead>
         <tbody id="bodyTabla">
-            {pintarProductos()}
+            {productos.map((producto) => <FilaProducto p={producto} />)}
         </tbody>
     </table>
+
+        
+    </div>
 }
 
 export default ListarProductos;
