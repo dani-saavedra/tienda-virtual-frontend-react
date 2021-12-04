@@ -1,4 +1,4 @@
-import consultarProductos from "../api/Proyecto.api";
+import service from "../api/Proyecto.api";
 
 import { useState, useEffect } from 'react'
 import FilaProducto from "./FilaProducto";
@@ -35,7 +35,7 @@ const ListarProductos = () => {
 
     //llamando con boton, (para gustos los colores)
     const cargarProductos = () => {
-        consultarProductos()
+        service.consultarProductos()
             .then((response) => setProductos(response))
             .catch((error) => {
                 console.log("Mori")
@@ -44,7 +44,7 @@ const ListarProductos = () => {
     /*
     Voy a ejecutar algo (callback) al momento que pase el tiempo que tenga definido
     setTimeout(() => {
-        consultarProductos()
+        service.consultarProductos()
             .then((response) => setProductos(response))
             .catch((error) => {
                 console.log("Mori")
@@ -53,7 +53,7 @@ const ListarProductos = () => {
     */
 
     useEffect(() => {
-        consultarProductos()
+        service.consultarProductos()
             .then((response) => setProductos(response))
             .catch((error) => {
                 console.log("Mori")
@@ -74,6 +74,7 @@ const ListarProductos = () => {
                 <th>Cantidad</th>
                 <th>Precio</th>
                 <th>Disponibilidad</th>
+                <th>Acciones</th>
             </tr>
         </thead>
         <tbody id="bodyTabla">

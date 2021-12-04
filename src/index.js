@@ -9,6 +9,7 @@ import {
   Route,
 } from "react-router-dom";
 import Home from './components/Home';
+import DetalleProducto from './components/DetalleProducto';
 
 
 
@@ -20,7 +21,7 @@ ReactDOM.render(
       <Route exact path="/" component={Home}></Route>
       <Route exact path="/producto/registrar" component={ListarProductos}></Route>
       <Route exact path="/producto/listar" component={ListarProductos}></Route>
-      <Route exact path="/producto/detalle" component={PintarDatos}></Route>
+      <Route exact path="/producto/detalle/:referencia" component={DetalleProducto}></Route>
       <Route path="/" component={NoExiste}></Route>
     </Switch>
   </BrowserRouter>

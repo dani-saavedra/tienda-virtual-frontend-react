@@ -1,43 +1,62 @@
-import PropTypes from 'prop-types'
-import { useState } from 'react'
 
-const DetalleProducto = ({ nombre, marca, cantidad, precio }) => {
+import { useEffect, useState } from "react";
+import service from "../api/Proyecto.api";
 
-    const [cantidadDisponible, setCantidadDisponible] = useState(cantidad)
-    const [precioMostrar, setPrecioMostrar] = useState(1)
+const DetalleProducto = ({ match: { params: { referencia } } }) => {
 
-    const vender = () => {
-        setCantidadDisponible(cantidadDisponible - 1)
-    }
+    const [producto, setProducto] = useState({})
 
-    const aplicarDescuento = () => {
-        if (cantidadDisponible > 90) {
-            setPrecioMostrar(precio / 2)
-        } else {
-            setPrecioMostrar(precio * 2)
-        }
-    }
+    useEffect(() => {
+        service.consultarProductoPorReferencia(referencia)
+            .then((response) => {
+                setProducto(response)
+            })
+            .catch((error)=>{
+                console.log(error)
+            })
+    }, [])
+
+
     return <div>
-        <h1>detallde del producto</h1>
-        <ul>
-            <li>{nombre}</li>
-            <li>{marca}</li>
-            <li>la cantidad es: {cantidadDisponible}</li>
-            <li>{precioMostrar}</li>
-        </ul>
-        <button onClick={vender}>Vender un elemento</button>
-        <button onClick={aplicarDescuento}>Aplicar Descuento</button>
+        <h1>Detalle del producto {referencia} </h1>
+        <img src={producto.urlFotografia} width="300px"/>
+        <table className="table">
+            <tr>
+                <td>Referencia</td>
+                <td>{producto.referencia}</td>
+            </tr>
+            <tr>
+                <td>marca</td>
+                <td>{producto.marca}</td>
+            </tr>
+            <tr>
+                <td>materiales</td>
+                <td>{producto.materiales}</td>
+            </tr>
+            <tr>
+                <td>categoria</td>
+                <td>{producto.categoria}</td>
+            </tr>
+            <tr>
+                <td>descripcion</td>
+                <td>{producto.descripcion}</td>
+            </tr>
+            <tr>
+                <td>disponibilidad</td>
+                <td>{producto.disponibilidad}</td>
+            </tr>
+            <tr>
+                <td>precio</td>
+                <td>{producto.precio}</td>
+            </tr>
+            <tr>
+                <td>cantidad</td>
+                <td>{producto.cantidad}</td>
+            </tr>
+
+        </table>
+
     </div>
 }
 
-DetalleProducto.propTypes = {
-    nombre: PropTypes.string.isRequired,
-    marca: PropTypes.string.isRequired,
-    cantidad: PropTypes.number,
-    precio: PropTypes.number.isRequired
-}
-
-DetalleProducto.defaultProps = {
-    precio: 1000
-}
 export default DetalleProducto
