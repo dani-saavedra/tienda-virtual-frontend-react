@@ -1,8 +1,6 @@
 import { Link } from "react-router-dom"
 
-
-
-const Home = () => {
+const MenuPrincipal = () => {
 
     return <div>
         <nav class="navbar navbar-expand-lg navbar-light bg-light">
@@ -12,10 +10,13 @@ const Home = () => {
                         <a class="nav-link" ><Link to="/">Inicio</Link></a>
                     </li>
                     <li class="nav-item">
-                        <a class="nav-link"><Link to="/producto/registrar">Registrar Producto</Link></a>
+                        <a class="nav-link"><Link to="/producto">Productos</Link></a>
                     </li>
                     <li class="nav-item">
-                        <a class="nav-link" ><Link to="/producto/listar">Ver Productos</Link></a>
+                        <a class="nav-link" ><Link to="/cliente">Clientes</Link></a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" ><Link to="/pedido">Pedidos</Link></a>
                     </li>
                 </ul>
             </div>
@@ -24,4 +25,4 @@ const Home = () => {
 
 }
 
-export default Home
+export default MenuPrincipal

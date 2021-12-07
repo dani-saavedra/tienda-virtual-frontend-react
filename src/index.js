@@ -8,8 +8,10 @@ import {
   Switch,
   Route,
 } from "react-router-dom";
-import Home from './components/Home';
+import MenuPrincipal from './components/MenuPrincipal';
 import DetalleProducto from './components/products/DetalleProducto';
+import InicioProducto from './components/products/InicioProducto';
+import RegistraPedido from './components/pedido/RegistrarPedido';
 
 
 
@@ -18,7 +20,9 @@ import DetalleProducto from './components/products/DetalleProducto';
 ReactDOM.render(
   <BrowserRouter>
     <Switch>
-      <Route exact path="/" component={Home}></Route>
+      <Route exact path="/" component={MenuPrincipal}></Route>
+      <Route exact path="/producto" component={InicioProducto}></Route>
+      <Route exact path="/pedido" component={RegistraPedido}></Route>
       <Route exact path="/producto/registrar" component={ListarProductos}></Route>
       <Route exact path="/producto/listar" component={ListarProductos}></Route>
       <Route exact path="/producto/detalle/:referencia" component={DetalleProducto}></Route>
