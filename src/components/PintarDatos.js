@@ -1,4 +1,4 @@
-import DetalleProducto from "./DetalleProducto";
+import DetalleProducto from "./products/DetalleProducto";
 import PintarHolaMundo from "./PintarHolaMundo";
 
 //JAVA lenguaje fuertemente tipado

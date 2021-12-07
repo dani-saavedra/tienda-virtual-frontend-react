@@ -1,4 +1,4 @@
-import service from "../api/Proyecto.api";
+import service from "../../api/Proyecto.api";
 
 import { useState, useEffect } from 'react'
 import FilaProducto from "./FilaProducto";

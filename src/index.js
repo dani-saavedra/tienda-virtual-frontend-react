@@ -1,6 +1,6 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
-import ListarProductos from './components/ListarProductos';
+import ListarProductos from './components/products/ListarProductos';
 import PintarDatos from './components/PintarDatos';
 import NoExiste from './components/NoExiste';
 import {
@@ -9,7 +9,7 @@ import {
   Route,
 } from "react-router-dom";
 import Home from './components/Home';
-import DetalleProducto from './components/DetalleProducto';
+import DetalleProducto from './components/products/DetalleProducto';
 
 
 

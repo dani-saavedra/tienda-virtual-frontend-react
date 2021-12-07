@@ -1,6 +1,6 @@
 
 import { useEffect, useState } from "react";
-import service from "../api/Proyecto.api";
+import service from "../../api/Proyecto.api";
 
 const DetalleProducto = ({ match: { params: { referencia } } }) => {
 
