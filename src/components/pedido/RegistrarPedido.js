@@ -86,6 +86,10 @@ const RegistraPedido = () => {
         return carrito
     }
 
+    const registrarPedido = () => {
+        
+    }
+
     return <div>
         <h1>Nuevo Pedido</h1>
         <label>Cliente </label>
@@ -110,8 +114,6 @@ const RegistraPedido = () => {
                 <label>Cantidad</label>
                 <input type="number" id="cantidadProducto" ref={cant => cantidadSeleccionada = cant} />
                 <button onClick={agregarProducto} >Agregar al pedido</button>
-
-
                 <table className="table">
                     <thead>
                         <tr>
@@ -143,6 +145,7 @@ const RegistraPedido = () => {
                 </table>
                 <div>
                     <button onClick={limpie}>Limpiar</button>
+                    <button onClick={registrarPedido}>Registrar Pedido</button>
                 </div>
             </form>
         </div>
