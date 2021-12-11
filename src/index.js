@@ -14,6 +14,7 @@ import InicioProducto from './components/products/InicioProducto';
 import RegistraPedido from './components/pedido/RegistrarPedido';
 
 import './general.css'
+import VerPedidos from './components/pedido/VerPedidos';
 
 
 
@@ -24,6 +25,7 @@ ReactDOM.render(
       <Route exact path="/" component={MenuPrincipal}></Route>
       <Route exact path="/producto" component={InicioProducto}></Route>
       <Route exact path="/pedido" component={RegistraPedido}></Route>
+      <Route exact path="/pedidos" component={VerPedidos}></Route>
       <Route exact path="/producto/registrar" component={ListarProductos}></Route>
       <Route exact path="/producto/listar" component={ListarProductos}></Route>
       <Route exact path="/producto/detalle/:referencia" component={DetalleProducto}></Route>

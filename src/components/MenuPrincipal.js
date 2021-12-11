@@ -16,7 +16,10 @@ const MenuPrincipal = () => {
                         <a class="nav-link" ><Link to="/cliente">Clientes</Link></a>
                     </li>
                     <li class="nav-item">
-                        <a class="nav-link" ><Link to="/pedido">Pedidos</Link></a>
+                        <a class="nav-link" ><Link to="/pedido">Nuevo Pedido</Link></a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" ><Link to="/pedidos">Ver Pedidos</Link></a>
                     </li>
                 </ul>
             </div>

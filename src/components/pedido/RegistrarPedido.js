@@ -1,6 +1,7 @@
 import { useEffect, useState } from "react";
 import obtenerClientes from "../../api/Cliente.api"
 import productoAPI from "../../api/Producto.api"
+import pedidoAPI from "../../api/Pedido.api"
 import NoExiste from "../NoExiste";
 
 
@@ -97,13 +98,13 @@ const RegistraPedido = () => {
                 }
             })
         }
-        //guardar
-        fetch("http://localhost:9090/api/order/new")
+        pedidoAPI.registrarPedido(order);
+        limpie()
     }
 
     return <div>
         <h1>Nuevo Pedido</h1>
-        <div class="form-group">
+        <div className="form-group">
             <label>Cliente </label>
             <select id="cliente" className="form-select" ref={cli => clienteSeleccionado = cli}>
                 <option value="" />
@@ -117,7 +118,7 @@ const RegistraPedido = () => {
                 e.preventDefault();
 
             }}>
-                <div class="form-group">
+                <div className="form-group">
                     <label>Producto a vender </label>
                     <select id="producto" className="form-select" ref={prod => productoSeleccionado = prod}>
                         <option />
