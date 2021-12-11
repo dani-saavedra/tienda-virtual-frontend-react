@@ -13,6 +13,7 @@ import DetalleProducto from './components/products/DetalleProducto';
 import InicioProducto from './components/products/InicioProducto';
 import RegistraPedido from './components/pedido/RegistrarPedido';
 
+import './general.css'
 
 
 

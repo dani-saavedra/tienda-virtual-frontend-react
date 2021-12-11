@@ -66,6 +66,7 @@ const RegistraPedido = () => {
         }
     }
 
+
     const adicionarProductoLista = (nuevoProducto, cantidadSeleccionada, items, total) => {
         let carrito = [...items]
         carrito.push({
@@ -86,30 +87,48 @@ const RegistraPedido = () => {
         return carrito
     }
 
+    const registrarPedido = () => {
+        const order = {
+            cliente: clienteSeleccionado.value,
+            productos: productosCarrito.map((item) => {
+                return {
+                    referencia: item.producto.referencia,
+                    cantidad: item.cantidadSeleccionada
+                }
+            })
+        }
+        //guardar
+        fetch("http://localhost:9090/api/order/new")
+    }
+
     return <div>
         <h1>Nuevo Pedido</h1>
-        <label>Cliente </label>
-        <select id="cliente" className="form-select" ref={cli => clienteSeleccionado = cli}>
-            <option value="" />
-            {clientes.map((nombreCliente, index) => {
-                return <option key={index} value={nombreCliente}> {nombreCliente}</option>
-            })}
-        </select>
+        <div class="form-group">
+            <label>Cliente </label>
+            <select id="cliente" className="form-select" ref={cli => clienteSeleccionado = cli}>
+                <option value="" />
+                {clientes.map((nombreCliente, index) => {
+                    return <option key={index} value={nombreCliente}> {nombreCliente}</option>
+                })}
+            </select>
+        </div>
         <div>
             <form onSubmit={e => {
                 e.preventDefault();
 
             }}>
-                <label>Producto a vender </label>
-                <select id="producto" ref={prod => productoSeleccionado = prod}>
-                    <option />
-                    {productos.map((producto, index) => {
-                        return <option key={index} value={producto.referencia}>{producto.descripcion}</option>
-                    })}
-                </select>
+                <div class="form-group">
+                    <label>Producto a vender </label>
+                    <select id="producto" className="form-select" ref={prod => productoSeleccionado = prod}>
+                        <option />
+                        {productos.map((producto, index) => {
+                            return <option key={index} value={producto.referencia}>{producto.descripcion}</option>
+                        })}
+                    </select>
+                </div>
                 <label>Cantidad</label>
-                <input type="number" id="cantidadProducto" ref={cant => cantidadSeleccionada = cant} />
-                <button onClick={agregarProducto} >Agregar al pedido</button>
+                <input className="form-control" type="number" id="cantidadProducto" ref={cant => cantidadSeleccionada = cant} />
+                <button className="btn btn-primary" onClick={agregarProducto} >Agregar al pedido</button>
 
 
                 <table className="table">
@@ -129,7 +148,7 @@ const RegistraPedido = () => {
                                 <td>{item.cantidadSeleccionada}</td>
                                 <td>{item.producto.precio}</td>
                                 <td>{item.total}</td>
-                                <td><button onClick={() => eliminarProduct(item.producto.referencia, item.total)}>Eliminar Producto</button></td>
+                                <td><button className="btn btn-primary" onClick={() => eliminarProduct(item.producto.referencia, item.total)}>Eliminar Producto</button></td>
                             </tr>
                         })}
                     </tbody>
@@ -142,7 +161,8 @@ const RegistraPedido = () => {
                     </tfoot>
                 </table>
                 <div>
-                    <button onClick={limpie}>Limpiar</button>
+                    <button className="btn btn-primary" onClick={registrarPedido}>Registar</button>
+                    <button className="btn btn-secondary" onClick={limpie}>Limpiar</button>
                 </div>
             </form>
         </div>
