@@ -2,13 +2,27 @@
 
 const obtenerPedidos = async () => {
 
-    const response = await fetch("http://localhost:9090/api/order/all");
+    const response = await fetch("http://localhost:8080/api/order/all");
+    const datos = await response.json();
+    return datos;
+}
+
+const obtenerPedidosPorVendedor = async (idVendedor) => {
+
+    const response = await fetch(`http://localhost:8080/api/order/vendor/${idVendedor}`);
+    const datos = await response.json();
+    return datos;
+}
+
+const obtenerPedidosPorVendedorYEstado = async (vendedor,estado) => {
+
+    const response = await fetch(`http://localhost:8080/api/order/state/${estado}/${vendedor}`);
     const datos = await response.json();
     return datos;
 }
 
 const registrarPedido = (order) => {
-    fetch("http://localhost:9090/api/order/new", {
+    fetch("http://localhost:8080/api/order/new", {
         method: 'POST',
         body: JSON.stringify(order),
         headers: {
@@ -21,5 +35,7 @@ const registrarPedido = (order) => {
 
 export default {
     obtenerPedidos,
-    registrarPedido
+    registrarPedido,
+    obtenerPedidosPorVendedorYEstado,
+    obtenerPedidosPorVendedor
 }

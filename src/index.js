@@ -15,14 +15,16 @@ import RegistraPedido from './components/pedido/RegistrarPedido';
 
 import './general.css'
 import VerPedidos from './components/pedido/VerPedidos';
-
+import Login from './components/Login';
 
 
 //Trabajo con SPA ( single page application) tengo un solo html pero multiples vistas(componentes)
 ReactDOM.render(
   <BrowserRouter>
     <Switch>
-      <Route exact path="/" component={MenuPrincipal}></Route>
+     
+      <Route exact path="/" component={Login}></Route>
+      <Route exact path="/menu" component={MenuPrincipal}></Route>
       <Route exact path="/producto" component={InicioProducto}></Route>
       <Route exact path="/pedido" component={RegistraPedido}></Route>
       <Route exact path="/pedidos" component={VerPedidos}></Route>
